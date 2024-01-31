@@ -4,7 +4,10 @@ const cors = require('cors');
 const puppeteer = require('puppeteer');
 const port = 3000;
 
-app.use(cors({ origin: '*' }));
+app.set('trust proxy', 1)
+app.use(
+    cors({ credentials: true, origin: true, exposedHeaders: ['Set-Cookie'] }),
+)
 
 app.get('/', (req, res) => {
     res.send('GET request to the homepage')
