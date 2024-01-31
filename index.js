@@ -4,7 +4,7 @@ const cors = require('cors');
 const puppeteer = require('puppeteer');
 const port = 3000;
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 app.get('/', (req, res) => {
     res.send('GET request to the homepage')
