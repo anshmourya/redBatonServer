@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get('/scrap', async (req, res) => {
     try {
         // Launch the browser and open a new blank page
-        const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 
         // Store the scraped data from all pages
         const allScrapedData = [];
