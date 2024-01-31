@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -15,7 +16,16 @@ app.get('/', (req, res) => {
 app.get('/scrap', async (req, res) => {
     try {
         // Launch the browser and open a new blank page
-        const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const browser = await puppeteer.launch({
+            headless: 'new', args: ["--disable-setuid-sandbox",
+                "--no-sandbox",
+                "--single-process",
+                "--no-zygote",],
+            executablePath:
+                process.env.NODE_ENV === "production"
+                    ? process.env.PUPPETEER_EXECUTABLE_PATH
+                    : puppeteer.executablePath(),
+        });
 
         // Store the scraped data from all pages
         const allScrapedData = [];
