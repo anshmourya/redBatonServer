@@ -6,6 +6,9 @@ const port = 3000;
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('GET request to the homepage')
+})
 app.get('/scrap', async (req, res) => {
     try {
         // Launch the browser and open a new blank page
