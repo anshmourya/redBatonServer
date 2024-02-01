@@ -51,6 +51,7 @@ app.get('/scrap', async (req, res) => {
                     const ageElement = subtextElements[index].querySelector('.age');
 
                     // Check if elements exist before accessing their properties
+                    const id = item.getAttribute('id');
                     const title = titleElement ? titleElement.textContent.trim() : 'N/A'
                     const url = titleElement ? titleElement.getAttribute('href') : 'N/A';
                     const hackerNewsUrl = voteLinkElement ? voteLinkElement.getAttribute('href') : 'N/A';
@@ -58,7 +59,7 @@ app.get('/scrap', async (req, res) => {
                     const postedBy = userElement ? userElement.textContent.trim() : 'N/A';
                     const postedOn = ageElement ? ageElement.getAttribute('title') : 'N/A';
 
-                    scrapedData.push({ url, hackerNewsUrl, upvotes, postedBy, postedOn, title });
+                    scrapedData.push({ url, hackerNewsUrl, upvotes, postedBy, postedOn, title, id });
                 });
 
                 return scrapedData;
